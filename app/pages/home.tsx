@@ -8,13 +8,13 @@ export const meta: Route.MetaFunction = ({ matches }: Route.MetaArgs) => {
   
   const siteUrl = "https://ardizanki.com";
   const previewImage = `${siteUrl}/og-image.png`;
-  const title = "Ardizanki - Software Engineer";
+  const title = "Ardi Zanki";
   const description = "Software Engineer based in Indonesia";
   
   return [
     { title: title },
     { name: "description", content: description },
-    { name: "keywords", content: "QA engineer, software quality assurance, automation testing, playwright, API testing, web testing, frontend engineer, react, typescript, javascript, open source, indonesia" },
+    { name: "keywords", content: "QA engineer, software quality assurance, automation testing, playwright, API testing, web testing, software engineer, frontend engineer, react, typescript, javascript, open source, indonesia" },
     { name: "viewport", content: "width=device-width, initial-scale=1" },
     { name: "robots", content: robots },
     { name: "googlebot", content: robots },
