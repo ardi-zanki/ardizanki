@@ -5,13 +5,35 @@ import type { Route } from "./+types/home";
 export const meta: Route.MetaFunction = ({ matches }: Route.MetaArgs) => {
   let { isProductionHost } = matches[0].data;
   let robots = isProductionHost ? "index,follow" : "noindex, nofollow";
+  
+  const siteUrl = "https://ardizanki.com";
+  const previewImage = `${siteUrl}/og-image.png`;
+  const title = "Ardizanki - Software Engineer";
+  const description = "Software Engineer based in Indonesia";
+  
   return [
-    { title: "Ardi - Software Engineer" },
-    { name: "description", content: "Software Engineer based in Indonesia" },
-    { name: "keywords", content: "quality assurance, automation, interface, web development, web, app, api, database,technology, tech, software engineering, opinion" },
+    { title: title },
+    { name: "description", content: description },
+    { name: "keywords", content: "QA engineer, software quality assurance, automation testing, playwright, API testing, web testing, frontend engineer, react, typescript, javascript, open source, indonesia" },
     { name: "viewport", content: "width=device-width, initial-scale=1" },
     { name: "robots", content: robots },
     { name: "googlebot", content: robots },
+    
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: siteUrl },
+    { property: "og:title", content: title },
+    { property: "og:description", content: description },
+    { property: "og:image", content: previewImage },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+    { property: "og:site_name", content: "Ardizanki Portfolio" },
+    
+    { name: "twitter:card", content: "summary_large_image" },
+    { name: "twitter:url", content: siteUrl },
+    { name: "twitter:title", content: title },
+    { name: "twitter:description", content: description },
+    { name: "twitter:image", content: previewImage },
+    { name: "twitter:creator", content: "@ardi_zanki" },
   ];
 };
 
