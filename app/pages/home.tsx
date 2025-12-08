@@ -1,5 +1,6 @@
 import { Link } from "react-router";
-import { Twitter, Github, Instagram, Linkedin, Link2, Box, Disc } from "lucide-react";
+import { Twitter, Github, Linkedin, Globe, ClipboardList, Drama, Plug, Smartphone, Target, FileText, Zap } from "lucide-react";
+import { useState } from "react";
 import type { Route } from "./+types/home";
 
 export const meta: Route.MetaFunction = ({ matches }: Route.MetaArgs) => {
@@ -8,8 +9,8 @@ export const meta: Route.MetaFunction = ({ matches }: Route.MetaArgs) => {
   
   const siteUrl = "https://ardizanki.com";
   const previewImage = `${siteUrl}/og-image.png`;
-  const title = "Ardi Zanki";
-  const description = "Software Engineer based in Indonesia";
+  const title = "Ardizanki";
+  const description = "QA Engineer and Frontend Developer with 5 years of experience delivering high-quality software solutions";
   
   return [
     { title: title },
@@ -37,32 +38,73 @@ export const meta: Route.MetaFunction = ({ matches }: Route.MetaArgs) => {
   ];
 };
 
-type QuickLink = {
-  icon: React.ComponentType<{ className?: string }>;
+type Project = {
   title: string;
-  to: string;
+  description: string;
+  url: string;
+  preview: string;
+  icon: React.ComponentType<{ className?: string }>;
 };
 
-const quicklinks: QuickLink[] = [
+const projects: Project[] = [
   {
-    icon: Twitter,
-    title: "@ardi_zanki",
-    to: "https://x.com/ardi_zanki",
+    title: "Ardizanki Personal Website",
+    description: "A simple and clean website built using React Router v7 and TypeScript",
+    url: "https://ardizanki.com/",
+    preview: "/previews/router.png",
+    icon: Globe,
   },
+  {
+    title: "Test Case Management",
+    description: "Centralized test case repository with execution tracking",
+    url: "https://ardizanki.com/",
+    preview: "/previews/sheets.png",
+    icon: ClipboardList,
+  },
+  {
+    title: "Playwright Web Automation",
+    description: "End-to-end automated testing for web applications",
+    url: "http://github.com/ardi-zanki/playwright-web-automation-pom/",
+    preview: "/previews/playwright.png",
+    icon: Drama,
+  },
+  {
+    title: "Playwright API Automation",
+    description: "REST API testing with CI/CD integration",
+    url: "http://github.com/ardi-zanki/playwright-api-automation/",
+    preview: "/previews/postman.png",
+    icon: Plug,
+  },
+  {
+    title: "Maestro Mobile Automation",
+    description: "Automated testing for iOS and Android applications",
+    url: "http://github.com/ardi-zanki/maestro-mobile-automation/",
+    preview: "/previews/maestro.png",
+    icon: Smartphone,
+  },
+];
+
+type SocialLink = {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  url: string;
+};
+
+const socialLinks: SocialLink[] = [
   {
     icon: Github,
-    title: "ardi-zanki",
-    to: "https://github.com/ardi-zanki",
+    title: "GitHub",
+    url: "https://github.com/ardi-zanki",
   },
   {
-    icon: Instagram,
-    title: "ardi.zanki",
-    to: "https://instagram.com/ardi.zanki",
+    icon: Twitter,
+    title: "X/Twitter",
+    url: "https://x.com/ardi_zanki",
   },
   {
     icon: Linkedin,
-    title: "ardizanki",
-    to: "https://www.linkedin.com/in/ardizanki",
+    title: "LinkedIn",
+    url: "https://www.linkedin.com/in/ardizanki/",
   },
 ];
 
@@ -74,69 +116,151 @@ type Highlight = {
 
 const highlights: Highlight[] = [
   {
-    icon: Link2,
-    title: "Quality-Obsessed",
+    icon: Target,
+    title: "Quality Assurance Excellence",
     description:
-      "End-to-end testing with Postman and Playwright, automated quality checks via GitHub Actions.",
+      "Comprehensive testing strategies using Postman and Playwright, with automated CI/CD pipelines through GitHub Actions. I ensure your product works flawlessly before it reaches users.",
   },
   {
-    icon: Box,
-    title: "Standards-Focused",
+    icon: FileText,
+    title: "Process & Documentation",
     description:
-      "Structured documentation in Notion, data transparency with Sheets, agile tracking in Jira.",
+      "Clear, structured workflows with proper documentation in Notion, transparent data tracking in Google Sheets, and agile project management in Jira. You'll always know where your project stands.",
   },
   {
-    icon: Disc,
-    title: "Simple and Clean",
+    icon: Zap,
+    title: "Modern Web Development",
     description:
-      "Type-safe web applications built with React, React Router v7, and TypeScript.",
+      "Fast, maintainable web applications built with React, React Router v7, and TypeScript. Clean code that's easy to scale and update as your business grows.",
   },
 ];
+
+function ProjectLink({ project }: { project: Project }) {
+  const [showPreview, setShowPreview] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const Icon = project.icon;
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    setMousePosition({ x: e.clientX, y: e.clientY });
+  };
+
+  return (
+    <div className="flex flex-col gap-1">
+      <Link
+        to={project.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setShowPreview(true)}
+        onMouseLeave={() => setShowPreview(false)}
+        onMouseMove={handleMouseMove}
+        className="flex items-center gap-2 text-gray-800 dark:text-gray-100 underline w-fit"
+      >
+        <Icon className="h-4 w-4" />
+        {project.title}
+      </Link>
+      
+      <p className="text-sm text-gray-600 dark:text-gray-400 pl-6">
+        {project.description}
+      </p>
+      
+      {showPreview && (
+        <div
+          className="fixed z-50 pointer-events-none"
+          style={{
+            left: `${mousePosition.x + 20}px`,
+            top: `${mousePosition.y + 20}px`,
+          }}
+        >
+          <div className="rounded-lg border-2 border-gray-200 bg-white shadow-2xl dark:border-gray-700 dark:bg-gray-800 overflow-hidden">
+            <img
+              src={project.preview}
+              alt={`${project.title} preview`}
+              className="w-[400px] h-auto object-cover"
+              onError={(e) => {
+                e.currentTarget.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="250"><rect width="400" height="250" fill="%23f3f4f6"/><text x="50%" y="50%" text-anchor="middle" fill="%239ca3af" font-family="system-ui" font-size="16">Preview Not Available</text></svg>';
+              }}
+            />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Home() {
   return (
     <main className="flex min-h-full w-full flex-col items-center justify-center dark:bg-gray-900">
-      <section className="from-23% via-82% flex w-full flex-col items-center gap-y-12 bg-gradient-to-b from-[#CCD2DE] via-[#D9DDE6] to-white to-100% py-[96px] dark:from-[#595F6C] dark:via-[#202228] dark:via-65% dark:to-gray-900 md:py-[160px]">
-        <p className="mx-12 max-w-[540px] text-center text-xl text-gray-700 dark:text-gray-200 md:mx-0">
-          I am a software engineer specializing in quality assurance who loves to create 
-          simple and clean web applications.
-        </p>
-        <div className="flex flex-col divide-y divide-gray-200 overflow-hidden rounded-lg border border-gray-200 dark:divide-gray-700 dark:border-gray-700 md:h-[72px] md:flex-row md:divide-x md:divide-y-0">
-          {quicklinks.map(({ icon: Icon, title, to }) => (
-            <Link
-              key={title}
-              to={to}
-              target="_blank"
-              rel="noopener noreferrer"
-              prefetch="intent"
-              className="flex justify-center gap-x-2 px-9 py-6 text-gray-700 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-800"
-            >
-              <Icon className="h-6 w-6" />
-              {title}
-            </Link>
-          ))}
+      {/* Hero Section */}
+      <section className="flex w-full flex-col items-center gap-y-6 py-16 pb-12 dark:bg-gray-900 md:pt-24">
+        <div className="w-full max-w-[640px] px-6 md:px-0">
+          <h1 className="text-left text-2xl font-semibold text-gray-800 dark:text-gray-100">
+            Ardizanki
+          </h1>
+          <p className="mt-4 text-left text-base text-gray-800 dark:text-gray-100">
+            I'm a QA Engineer and Frontend Developer with 5 years of experience delivering high-quality 
+            software solutions. I specialize in test automation, API testing, and building scalable 
+            web applications with React, TanStack, and TypeScript.
+          </p>
         </div>
       </section>
-      <section className="flex w-full flex-col items-center gap-y-24 px-12 pb-12 dark:bg-gray-900 md:gap-y-16 lg:gap-y-12">
-        <h2 className="text-center text-3xl font-semibold text-gray-800 dark:text-gray-100">
-          What to expect from my work:
-        </h2>
-        <dl className="grid max-w-[540px] gap-x-12 gap-y-6 lg:max-w-5xl lg:grid-flow-col">
-          {highlights.map(({ icon: Icon, title, description }) => (
-            <div key={title} className="relative flex flex-col gap-2 pl-14">
-              <dt className="text-xl font-semibold text-gray-800 dark:text-gray-100">
-                <Icon className="absolute left-0 top-0 h-8 w-8" />
-                {title}
-              </dt>
-              <dd className="text-[#757575]">{description}</dd>
-            </div>
-          ))}
-        </dl>
+
+      {/* Projects Section */}
+      <section className="flex w-full flex-col items-center gap-y-6 pb-12 dark:bg-gray-900">
+        <div className="w-full max-w-[640px] px-6 md:px-0">
+          <h2 className="text-left text-xl font-semibold text-gray-800 dark:text-gray-100 mb-3">
+            My Projects
+          </h2>
+          <div className="flex flex-col gap-4">
+            {projects.map((project) => (
+              <ProjectLink key={project.title} project={project} />
+            ))}
+          </div>
+        </div>
       </section>
-      <section className="grid h-[100px] w-full place-content-center place-items-center gap-y-6 bg-gray-50 p-12 dark:bg-black">
-        <p className="text-sm text-gray-400">
-          © {new Date().getFullYear()} Ardizanki.
-        </p>
+
+      {/* Highlights Section */}
+      <section className="flex w-full flex-col items-center gap-y-6 pb-12 dark:bg-gray-900">
+        <div className="w-full max-w-[640px] px-6 md:px-0">
+          <h2 className="text-left text-xl font-semibold text-gray-800 dark:text-gray-100">
+            What I bring to your project
+          </h2>
+          <dl className="mt-6 grid gap-y-8">
+            {highlights.map(({ icon: Icon, title, description }) => (
+              <div key={title} className="flex gap-3">
+                <Icon className="h-4 w-4 mt-1 shrink-0 text-gray-800 dark:text-gray-100" />
+                <div className="flex flex-col gap-2">
+                  <dt className="text-base font-semibold text-gray-800 dark:text-gray-100">
+                    {title}
+                  </dt>
+                  <dd className="text-left text-base  text-gray-800 dark:text-gray-100">{description}</dd>
+                </div>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      {/* Social Links Section */}
+      <section className="flex w-full flex-col items-center gap-y-6 pb-12 dark:bg-gray-900">
+        <div className="w-full max-w-[640px] px-6 md:px-0">
+          <p className="text-left text-base leading-relaxed text-gray-800 dark:text-gray-100">
+            Want to know more about my work? Check out my thoughts and projects, or connect with me on{" "}
+            {socialLinks.map((link, index) => (
+              <span key={link.title}>
+                <Link
+                  to={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-gray-800 dark:text-gray-100 underline"
+                >
+                  {link.title}
+                </Link>
+                {index < socialLinks.length - 1 && (index === socialLinks.length - 2 ? ", and " : ", ")}
+              </span>
+            ))}
+            .
+          </p>
+        </div>
       </section>
     </main>
   );
