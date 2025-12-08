@@ -9,13 +9,13 @@ export const meta: Route.MetaFunction = ({ matches }: Route.MetaArgs) => {
   
   const siteUrl = "https://ardizanki.com";
   const previewImage = `${siteUrl}/og-image.png`;
-  const title = "Ardizanki";
-  const description = "QA Engineer and Frontend Developer with 5 years of experience delivering high-quality software solutions";
+  const title = "Ardizanki - Software Engineer";
+  const description = "Software Engineer based in Indonesia";
   
   return [
     { title: title },
     { name: "description", content: description },
-    { name: "keywords", content: "QA engineer, software quality assurance, automation testing, playwright, API testing, web testing, software engineer, frontend engineer, react, typescript, javascript, open source, indonesia" },
+    { name: "keywords", content: "QA engineer, automation testing, playwright, API testing, web testing, software engineer, user interface engineer, design engineer, frontend engineer, react, tanstack, typescript, javascript, open source" },
     { name: "viewport", content: "width=device-width, initial-scale=1" },
     { name: "robots", content: robots },
     { name: "googlebot", content: robots },
@@ -27,7 +27,7 @@ export const meta: Route.MetaFunction = ({ matches }: Route.MetaArgs) => {
     { property: "og:image", content: previewImage },
     { property: "og:image:width", content: "1200" },
     { property: "og:image:height", content: "630" },
-    { property: "og:site_name", content: "Ardizanki Portfolio" },
+    { property: "og:site_name", content: "Ardizanki - Software Engineer" },
     
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:url", content: siteUrl },
