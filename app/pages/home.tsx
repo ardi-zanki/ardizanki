@@ -55,9 +55,9 @@ const projects: Project[] = [
     icon: Globe,
   },
   {
-    title: "Test Case Management",
-    description: "Centralized test case repository with execution tracking",
-    url: "https://ardizanki.com/",
+    title: "Bug0 - Test Case Management",
+    description: "Professional test management system for tracking and executing test cases",
+    url: "https://github.com/ardi-zanki/bug0",
     preview: "/previews/sheets.png",
     icon: ClipboardList,
   },
