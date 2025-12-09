@@ -197,9 +197,10 @@ export default function Home() {
             Ardizanki
           </h1>
           <p className="mt-4 text-left text-base text-gray-800 dark:text-gray-100">
-            I'm a QA Engineer and Frontend Developer with 5 years of experience delivering high-quality 
-            software solutions. I specialize in test automation, API testing, and building scalable 
-            web applications with React, TanStack, and TypeScript.
+            I'm a QA Engineer with 5 years of professional experience in delivering high-quality software 
+            solutions. I specialize in test automation and API testing using Playwright and Postman. 
+            Recently, I've been expanding my skills into Frontend Development, building web applications 
+            with React, React Router v7, and TypeScript.
           </p>
         </div>
       </section>
