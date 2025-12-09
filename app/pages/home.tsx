@@ -49,37 +49,37 @@ type Project = {
 const projects: Project[] = [
   {
     title: "Ardizanki Personal Website",
-    description: "A simple and clean website built using React Router v7 and TypeScript",
+    description: "A simple and clean website built using React and TypeScript",
     url: "https://ardizanki.com/",
-    preview: "/previews/router.png",
+    preview: "/previews/ardizanki.png",
     icon: Globe,
   },
   {
     title: "Bug0 - Test Case Management",
     description: "Professional test management system for tracking and executing test cases",
-    url: "https://github.com/ardi-zanki/bug0",
-    preview: "/previews/sheets.png",
+    url: "https://bug0.ardizanki.com/",
+    preview: "/previews/bug0.png",
     icon: ClipboardList,
   },
   {
     title: "Playwright Web Automation",
     description: "End-to-end automated testing for web applications",
     url: "https://github.com/ardi-zanki/playwright-web-automation-pom/",
-    preview: "/previews/playwright.png",
+    preview: "/previews/playwright-web.png",
     icon: Drama,
   },
   {
     title: "Playwright API Automation",
     description: "REST API testing with CI/CD integration",
     url: "https://github.com/ardi-zanki/playwright-api-automation/",
-    preview: "/previews/postman.png",
+    preview: "/previews/playwright-api.png",
     icon: Plug,
   },
   {
     title: "Maestro Mobile Automation",
     description: "Automated testing for iOS and Android applications",
     url: "https://github.com/ardi-zanki/maestro-mobile-automation/",
-    preview: "/previews/maestro.png",
+    preview: "/previews/maestro-app.png",
     icon: Smartphone,
   },
 ];
@@ -131,7 +131,7 @@ const highlights: Highlight[] = [
     icon: Zap,
     title: "Modern Web Development",
     description:
-      "Fast, maintainable web applications built with React, React Router v7, and TypeScript. Clean code that's easy to scale and update as your business grows.",
+      "Fast, maintainable web applications built with React, TanStack, and TypeScript. Clean code that's easy to scale and update as your business grows.",
   },
 ];
 
@@ -200,7 +200,7 @@ export default function Home() {
             I'm a QA Engineer with 5 years of professional experience in delivering high-quality software 
             solutions. I specialize in test automation and API testing using Playwright and Postman. 
             Recently, I've been expanding my skills into Frontend Development, building web applications 
-            with React, React Router v7, and TypeScript.
+            with React, TanStack, and TypeScript.
           </p>
         </div>
       </section>
